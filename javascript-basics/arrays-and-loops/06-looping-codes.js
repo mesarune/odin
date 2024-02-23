@@ -194,3 +194,5 @@ btn.addEventListener("click", () => {
 3.If the square root and the rounded down square root do not equal one another (!==), it means that the square root is not an integer, so we are not interested in it. In such a case, we use the continue statement to skip on to the next loop iteration without recording the number anywhere.
 
 4.If the square root is an integer, we skip past the if block entirely, so the continue statement is not executed; instead, we concatenate the current i value plus a space at the end of the paragraph content.
+
+*/

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>
+    THE TITLE OF YOUR WEBPAGE
+  </h1>
+  <div id="container"></div>
+  
+  <script type="text/javascript">
+    
+    "use strict";
+    
+    const container = document.querySelector('#container');
+    
+    const content = document.createElement('div');
+    content.classList.add('content');
+    content.textContent = 'This is the glorious text-content!';
+    
+    container.appendChild(content);
+    
+    const paraRed = document.createElement("p");
+    paraRed.style.color = "red";
+    paraRed.textContent = "Hey I'm red!";
+    
+    container.appendChild(paraRed);
+    
+    const headBlue = document.createElement("h3");
+    headBlue.style.color = "blue";
+    headBlue.textContent = "I'm a blue h3!";
+    
+    container.appendChild(headBlue);
+    
+    const newDiv = document.createElement("div"); 
+    newDiv.style.border = "thick solid black"; 
+    newDiv.style.backgroundColor = "pink";
+    
+    container.appendChild(newDiv);
+    
+    const head1 = document.createElement("h3"); 
+    head1.textContent = "I'm in a div";
+    
+    newDiv.appendChild(head1);
+    
+    const para2 = document.createElement("p");
+    para2.textContent = "ME TOO!";
+    
+    newDiv.appendChild(para2);
+    
+  </script>
+  
+</body>
+</html>

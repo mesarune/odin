@@ -2,22 +2,23 @@
 
 const fruits = ["Banana", "Orange", "Apple", "Mango"];
 const color = ["Black", "White", "Red"];
-const integer = [1, 2, 3, 4, 5, 6];
+const integer = [1, 2, 3, 4, 5];
 
 function double(i) {
   return i * 2;
 }
 
+// console.log(fruits.at(false));
+
 // Array.prototype.at()
 function arrAt(arr, index) {
-  if (index === -1) {
-    return arr.pop();
-  }
-  for (let i = 0; i <= index; i++) {
-    if (i === index) {
-      return arr.shift();
-    }
-    arr.shift();
+  if (index < 0) {
+    return arr[arr.length - Math.trunc(-index)];
+    // Math.trunc() : 小数点以下切り捨て
+  } else if (index >= 0) {
+    return arr[Math.trunc(index)];
+  } else {
+    return arr[0];
   }
 }
 
@@ -60,4 +61,4 @@ function arrMap(arr, func) {
 // Array.prototype.filter()
 // function arrFilter(arr, func)
   
-console.log(arrSlice(integer, 5, 3));
+console.log(arrAt(integer, false));

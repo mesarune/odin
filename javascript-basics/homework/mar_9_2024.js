@@ -24,9 +24,18 @@ function arrAt(arr, index) {
 
 // Array.prototype.join()
 function arrJoin(arr, s) {
-  return arr.toString().replace(/,/g, s);
+  let result = "";
+  for (let i = 0; i < arr.length; i++) {
+    if (i === arr.length -1) {
+      result += arr[i];
+    } else {
+      result += arr[i] + s;
+    }
+  }
+  return result;
 }
 
+// Array.prototype.concat()
 function arrConcat(arr1, arr2) {
   for (const element of arr2) {
     arr1.push(element);
@@ -61,4 +70,4 @@ function arrMap(arr, func) {
 // Array.prototype.filter()
 // function arrFilter(arr, func)
   
-console.log(arrAt(integer, false));
+console.log(arrJoin(integer, "*"));

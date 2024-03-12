@@ -8,8 +8,6 @@ function double(i) {
   return i * 2;
 }
 
-// console.log(fruits.at(false));
-
 // Array.prototype.at()
 function arrAt(arr, index) {
   if (index < 0) {
@@ -37,10 +35,14 @@ function arrJoin(arr, s) {
 
 // Array.prototype.concat()
 function arrConcat(arr1, arr2) {
-  for (const element of arr2) {
-    arr1.push(element);
+  let newArr = [];
+  for (const element of arr1) {
+    newArr.push(element);
   }
-  return arr1;
+  for (const element of arr2) {
+    newArr.push(element);
+  }
+  return newArr;
 }
 
 // Array.prototype.copyWithin()
@@ -70,4 +72,4 @@ function arrMap(arr, func) {
 // Array.prototype.filter()
 // function arrFilter(arr, func)
   
-console.log(arrJoin(integer, "*"));
+console.log(arrConcat(fruits, color));

@@ -8,6 +8,14 @@ function double(i) {
   return i * 2;
 }
 
+function isOverThree(i) {
+  if (i >= 3) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 // Array.prototype.at()
 function arrAt(arr, index) {
   if (index < 0) {
@@ -22,15 +30,15 @@ function arrAt(arr, index) {
 
 // Array.prototype.join()
 function arrJoin(arr, s) {
-  let result = "";
+  let newString = "";
   for (let i = 0; i < arr.length; i++) {
     if (i === arr.length -1) {
-      result += arr[i];
+      newString += arr[i];
     } else {
-      result += arr[i] + s;
+      newString += arr[i] + s;
     }
   }
-  return result;
+  return newString;
 }
 
 // Array.prototype.concat()
@@ -75,15 +83,26 @@ function arrCopyWithin(arr, toIndex, fromIndex, fromLastIndex) {
 
 // Array.prototype.slice()
 // ver.1.0
+// function arrSlice(arr, firstIndex, lastIndex) {
+//   let length = arr.length;
+//   for (let i = 0; i < length - lastIndex; i++){
+//     arr.pop();
+//   }
+//   for (let i = 0; i < firstIndex; i++) {
+//     arr.shift();
+//   }
+//   return arr;
+// }
+// ver.1.5
 function arrSlice(arr, firstIndex, lastIndex) {
-  let length = arr.length;
-  for (let i = 0; i < length - lastIndex; i++){
-    arr.pop();
+  let newArr = [];
+  if (lastIndex === undefined) {
+    lastIndex = arr.length;
   }
-  for (let i = 0; i < firstIndex; i++) {
-    arr.shift();
+  for (let i = firstIndex; i < lastIndex; i++) {
+    newArr.push(arr[i]);
   }
-  return arr;
+  return newArr;
 }
 
 // Array.prototype.map()
@@ -96,6 +115,14 @@ function arrMap(arr, func) {
 }
 
 // Array.prototype.filter()
-// function arrFilter(arr, func)
+function arrFilter(arr, func) {
+  let newArr = [];
+  for (const element of arr) {
+    if (func(element)) {
+      newArr.push(element);
+    }
+  }
+  return newArr;
+}
   
-console.log(arrCopyWithin(integer, 3, 3, 4));
+console.log(arrFilter(integer, isOverThree));

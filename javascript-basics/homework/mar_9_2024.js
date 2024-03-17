@@ -55,30 +55,27 @@ function arrConcat(arr1, arr2) {
 
 // Array.prototype.copyWithin()
 function arrCopyWithin(arr, toIndex, fromIndex, fromLastIndex) {
-  let newArr = [];
+  let arr2 = [];
+  let length = arr.length;
   if (fromLastIndex === undefined) {
     fromLastIndex = arr.length - 1;
   }
   for (let i = 0; i < toIndex; i++) {
-    newArr.push(arr[i]);
+    arr2.push(arr[i]);
   }
   for (let i = fromIndex; i <= fromLastIndex; i++) {
-    newArr.push(arr[i]);
+    arr2.push(arr[i]);
   }
-  for (let i = fromLastIndex + 1; i < arr.length; i++) {
-    newArr.push(arr[i]);
-  }
-  if (newArr.length > arr.length) {
-    for (let i = 0; i <= newArr.length - arr.length; i++) {
-      newArr.pop();
+  if (arr2.length > length) {
+    while (arr2.length > length) {
+      arr2.pop();
+    }
+  } else if (arr2.length < length) {
+    while (arr2.length < length) {
+      arr2.push(arr[arr2.length]);
     }
   }
-  if (newArr.length < arr.length) {
-    for (let i = newArr.length; i < arr.length; i++) {
-      newArr.push(arr[i]);
-    }
-  }
-  return newArr;
+  
 }
 
 // Array.prototype.slice()

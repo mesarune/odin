@@ -55,27 +55,32 @@ function arrConcat(arr1, arr2) {
 
 // Array.prototype.copyWithin()
 function arrCopyWithin(arr, toIndex, fromIndex, fromLastIndex) {
-  let arr2 = [];
+  let tmpArr = [];
   let length = arr.length;
-  if (fromLastIndex === undefined) {
+  if (fromLastIndex == undefined) {
     fromLastIndex = arr.length - 1;
   }
   for (let i = 0; i < toIndex; i++) {
-    arr2.push(arr[i]);
+    tmpArr.push(arr[i]);
   }
   for (let i = fromIndex; i <= fromLastIndex; i++) {
-    arr2.push(arr[i]);
+    tmpArr.push(arr[i]);
   }
-  if (arr2.length > length) {
-    while (arr2.length > length) {
-      arr2.pop();
+  if (tmpArr.length < length) {
+    while (tmpArr.length < length) {
+      tmpArr.push(arr[fromLastIndex]);
+      fromLastIndex++;
     }
-  } else if (arr2.length < length) {
-    while (arr2.length < length) {
-      arr2.push(arr[arr2.length]);
+  } else if (tmpArr.length > length) {
+    while (tmpArr.length > length) {
+      tmpArr.pop();
     }
   }
-  
+  arr.length = 0;
+  for (const element of tmpArr) {
+    arr.push(element);
+  }
+  return arr;
 }
 
 // Array.prototype.slice()
@@ -122,4 +127,4 @@ function arrFilter(arr, func) {
   return newArr;
 }
   
-console.log(arrFilter(integer, isOverThree));
+console.log(arrCopyWithin(integer, 0, 2));

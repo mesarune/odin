@@ -22,6 +22,27 @@
     const paperBtn = document.querySelector('#paperBtn');
     const scissorsBtn = document.querySelector('#scissorsBtn');
     
+    rockBtn.addEventListener('click', () => {
+      const playerSelection = 0;
+      const computerSelection = getComputerChoice();
+      const score = playRound(playerSelection, computerSelection);
+      showResult(score);
+    });
+    
+    paperBtn.addEventListener('click', () => {
+      const playerSelection = 1;
+      const computerSelection = getComputerChoice();
+      const score = playRound(playerSelection, computerSelection);
+      showResult(score);
+    });
+    
+    scissorsBtn.addEventListener('click', () => {
+      const playerSelection = 2;
+      const computerSelection = getComputerChoice();
+      const score = playRound(playerSelection, computerSelection);
+      showResult(score);
+    });
+    
     function getPlayerChoice() {
       let playerChoice = prompt("Rock, Paper, Scissors", "").toLowerCase();
       switch (playerChoice) {

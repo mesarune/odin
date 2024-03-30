@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <style>
+    .highlight {
+      color: white;
+      background-color: black;
+      padding: 10px;
+    }
+  </style>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +17,10 @@
   
   <p>Rock Paper Scissors</p>
   
+  <div id ="result"></div>
+  
+  <p id ="counter"></p>
+  
   <button id="rockBtn">rock</button>
   <button id="paperBtn">paper</button>
   <button id="scissorsBtn">scissors</button>
@@ -18,30 +29,22 @@
     // codes
     "use strict";
     
+    const result = document.querySelector('#result');
+    result.textContent = 'Let\'s begin' ;
+    result.setAttribute('class', 'highlight');
+    
+    const counter = document.querySelector('#counter');
+    let playerScore = 0;
+    let computerScore = 0;
+    counter.textContent = `You: ${playerScore} Me: ${computerScore} `;
+    
     const rockBtn = document.querySelector('#rockBtn');
     const paperBtn = document.querySelector('#paperBtn');
-    const scissorsBtn = document.querySelector('#scissorsBtn');
+    const scissorsBtn = document.querySelector('#scissorsBtn');    
     
-    rockBtn.addEventListener('click', () => {
-      const playerSelection = 0;
-      const computerSelection = getComputerChoice();
-      const score = playRound(playerSelection, computerSelection);
-      showResult(score);
-    });
-    
-    paperBtn.addEventListener('click', () => {
-      const playerSelection = 1;
-      const computerSelection = getComputerChoice();
-      const score = playRound(playerSelection, computerSelection);
-      showResult(score);
-    });
-    
-    scissorsBtn.addEventListener('click', () => {
-      const playerSelection = 2;
-      const computerSelection = getComputerChoice();
-      const score = playRound(playerSelection, computerSelection);
-      showResult(score);
-    });
+    rockBtn.addEventListener('click', () => handleClick(0));
+    paperBtn.addEventListener('click', () => handleClick(1));
+    scissorsBtn.addEventListener('click', () => handleClick(2));
     
     function getPlayerChoice() {
       let playerChoice = prompt("Rock, Paper, Scissors", "").toLowerCase();
@@ -72,11 +75,11 @@
     
     function showResult(score) {
       if (score > 0) {
-        alert("You win");
+        result.textContent = 'You win';
       } else if (score < 0) {
-        alert("You lose");
+        result.textContent = 'You lose';
       } else {
-        alert("Draw");
+        result.textContent = 'Draw';
       };
     }
     
@@ -89,6 +92,13 @@
       };  
       showResult(playerScore);
     }
+    
+    function handleClick(playerSelection) {
+    const computerSelection = getComputerChoice();
+    const score = playRound(playerSelection, computerSelection);
+    showResult(score);
+    }
+
     
   </script>
 </body>

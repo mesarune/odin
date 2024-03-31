@@ -46,6 +46,41 @@
     paperBtn.addEventListener('click', () => handleClick(1));
     scissorsBtn.addEventListener('click', () => handleClick(2));
     
+    function showComputerSelection(computerSelection) {
+      if (computerSelection == 0) {
+        result.textContent = 'Rock';
+      } else if (computerSelection == 1) {
+        result.textContent = 'Paper';
+      } else if (computerSelection == 2) {
+        result.textContent = 'Scissors';
+      }
+    }
+    
+    function countScore(score) {
+      if (score > 0) {
+        playerScore += 1;
+      } else if (score < 0) {
+        computerScore += 1;
+      }
+      if (playerScore == 5) {
+        result.textContent = 'You win';
+        playerScore = 0;
+        computerScore = 0;
+      } else if (computerScore == 5) {
+        result.textContent = 'You lose';
+        playerScore = 0;
+        computerScore = 0;
+      }
+      counter.textContent = `You: ${playerScore} Me: ${computerScore} `;
+    }
+    
+    function handleClick(playerSelection) {
+    const computerSelection = getComputerChoice();
+    showComputerSelection(computerSelection);
+    const score = playRound(playerSelection, computerSelection);
+    countScore(score);
+    }
+    
     function getPlayerChoice() {
       let playerChoice = prompt("Rock, Paper, Scissors", "").toLowerCase();
       switch (playerChoice) {
@@ -92,13 +127,6 @@
       };  
       showResult(playerScore);
     }
-    
-    function handleClick(playerSelection) {
-    const computerSelection = getComputerChoice();
-    const score = playRound(playerSelection, computerSelection);
-    showResult(score);
-    }
-
     
   </script>
 </body>

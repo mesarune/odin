@@ -1,0 +1,30 @@
+.flex-container {
+    display: flex;
+  }
+  
+  /* this selector selects all divs inside of .flex-container */
+  .flex-container div {
+    background: peachpuff;
+    border: 4px solid brown;
+    height: 100px;
+    /* In this case, flex is actually a shorthand for flex-grow, flex-shrink and flex-basis */
+    flex: 1;
+    /* flex: 1 equates to: flex-grow: 1, flex-shrink: 1, flex-basis: 0 */
+  }
+  
+  /* Very often you see the flex shorthand defined with only one value. In that case, that value is applied to flex-grow. So when we put flex: 1 on our divs, we were actually specifying a shorthand of flex: 1 1 0 */
+  
+  /* only div.two is selected here */
+  .flex-container .two {
+    flex: 2 1 0%;
+  }
+  
+  .flex-container .two {
+    flex-shrink: 0;
+  }
+  
+  /* An important implication to notice here is that when you specify flex-grow or flex-shrink, flex items do not necessarily respect your given values for width */
+  
+  /* flex-basis sets the initial size of a flex item, so any sort of flex-growing or flex-shrinking starts from that baseline size */
+  
+  

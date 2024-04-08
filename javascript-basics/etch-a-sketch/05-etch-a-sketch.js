@@ -3,6 +3,7 @@
 const grid = document.querySelector("#grid");
 const resetBtn = document.querySelector("#resetBtn");
 const randomBtn = document.querySelector("#randomBtn");
+const resizeBtn = document.querySelector("#resizeBtn");
 
 let lastColor = [0, 0, 0,];
 

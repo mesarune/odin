@@ -21,6 +21,19 @@ randomBtn.addEventListener("click", () => {
   }));
 })
 
+resizeBtn.addEventListener("click", () => {
+  const count = prompt("Number of squares per side for the new grid (16 - 100)", 16);
+  
+  if (isNaN(count)) {
+    alert("Not a number");
+  } else if (count < 16 || count > 100) {
+    alert("The number should 16 - 100");
+  } else {
+    grid.innerHTML = "";
+    createGrid(count);
+  };
+})
+
 function createGrid(count) {
   const size = 360 / count;
   

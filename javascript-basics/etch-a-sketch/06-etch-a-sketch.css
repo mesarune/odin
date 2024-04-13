@@ -1,28 +1,25 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#grid {
+  display: flex;
+  border: 1px solid black;
+}
+
+.row {
   
-  #grid {
-    display: flex;
-    width: 360px;
-    height: 360px;
-    border: 1px solid black;
-  }
+}
+
+.col {
   
-  .row {
-    
-  }
-  
-  .col {
-    
-  }
-  
-  .btnContainer {
-    display: flex;
-    justify-content: center;
-    margin: 12px;
-    column-gap: 12px;
-  }
-  
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  margin: 12px;
+  column-gap: 12px;
+}

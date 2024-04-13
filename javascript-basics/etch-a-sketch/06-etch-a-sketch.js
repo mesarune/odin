@@ -39,8 +39,6 @@ function createGrid(count) {
   
   for (let i = 0; i < count; i++) {
     const row = document.createElement("div");
-    row.style.width = size + "px";
-    row.style.height = size + "px";
     row.classList.add("row");
     grid.appendChild(row);
     

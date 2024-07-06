@@ -28,6 +28,9 @@ function operate(num1, num2, op) {
   } else if (op === "*") {
     return multiply(num1, num2);
   } else if (op === "/") {
+    if (num2 === 0) {
+      return "error";
+    }
     return divide(num1, num2);
   } else {
     return num1;
@@ -43,17 +46,26 @@ function onNumberButtonClick(number) {
 }
 
 function onOperatorButtonClick(op) {
-  operator = op;
-}
-
-function calculate(firstNumber, secondNumber, op) {
-  if ()
+  if (operator === "") {
+    operator = op;
+  } else if (operator !== "") {
+    if (secondNumber !== "") {
+      firstNumber = operate(Number(firstNumber), Number(secondNumber), operator).toString();
+      secondNumber = "";
+      operator = op;
+    } else {
+      operator = op;
+    }
+  }
 }
 
 function updateDisplay() {
   if (secondNumber === "") {
     if (firstNumber === "") {
       display.textContent = "0"
+    } else if (firstNumber === "error") {
+      display.textContent = firstNumber;
+      firstNumber = "";
     } else {
       display.textContent = firstNumber;
     }
@@ -86,7 +98,6 @@ function setUpOperatorButtons() {
         onOperatorButtonClick(button.textContent);
       }
       updateDisplay();
-      console.log(operator);
     })
   })
 }

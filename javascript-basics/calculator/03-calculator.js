@@ -37,40 +37,43 @@ function operate(num1, num2, op) {
   }
 }
 
-function onNumberButtonClick(number) {
-  if (operator === "") {
-    firstNumber += number;
+function modifyNumber(number, digit) {
+  if (number.includes(".") && digit === ".") {
+    return number;
   } else {
-    secondNumber += number;
+    return number + digit;
+  }
+}
+
+function onNumberButtonClick(number) {
+  if (firstNumber === "error") {
+    clear();
+  }
+  if (operator === "") {
+    firstNumber = modifyNumber(firstNumber, number);
+  } else {
+    secondNumber = modifyNumber(secondNumber, number);
   }
 }
 
 function onOperatorButtonClick(op) {
-  if (operator === "") {
-    operator = op;
-  } else if (operator !== "") {
-    if (secondNumber !== "") {
-      firstNumber = operate(Number(firstNumber), Number(secondNumber), operator).toString();
-      secondNumber = "";
-      operator = op;
-    } else {
-      operator = op;
-    }
+  if (firstNumber === "error") {
+    clear();
   }
+  if (operator !== "" && secondNumber !== "") {
+    firstNumber = operate(Number(firstNumber), Number(secondNumber), operator).toString();
+    secondNumber = "";
+  }
+  operator = op;
 }
 
 function updateDisplay() {
-  if (secondNumber === "") {
-    if (firstNumber === "") {
-      display.textContent = "0"
-    } else if (firstNumber === "error") {
-      display.textContent = firstNumber;
-      firstNumber = "";
-    } else {
-      display.textContent = firstNumber;
-    }
-  } else {
+  if (secondNumber !== "") {
     display.textContent = secondNumber;
+  } else if (firstNumber !== "") {
+    display.textContent = firstNumber;
+  } else {
+    display.textContent = "0";
   }
 }
 
@@ -78,6 +81,15 @@ function clear() {
   firstNumber = "";
   secondNumber = "";
   operator = "";
+}
+
+function backSpace() {
+  if (secondNumber !== "") {
+    secondNumber = secondNumber.slice(0, -1);
+  } else {
+    firstNumber = firstNumber.slice(0, -1);
+    operator = "";
+  }
 }
 
 function setUpNumberButtons() {
@@ -94,6 +106,8 @@ function setUpOperatorButtons() {
     button.addEventListener("click", () => {
       if (button.textContent === "clear") {
         clear();
+      } else if (button.textContent === "<") {
+        backSpace();
       } else {
         onOperatorButtonClick(button.textContent);
       }

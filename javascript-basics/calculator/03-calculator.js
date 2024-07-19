@@ -116,7 +116,30 @@ function setUpOperatorButtons() {
   })
 }
 
+function setUpKeyboardButtons() {
+  const validNumberButtons = [".", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  const validOperatorButtons = ["Escape", "Backspace", "Enter", "=", "/", "*", "-", "+"];
+  
+  window.addEventListener("keydown", (event) => {
+    if (validNumberButtons.includes(event.key)) {
+      onNumberButtonClick(event.key);
+      updateDisplay();
+    }
+    if (validOperatorButtons.includes(event.key)) {
+      if (event.key === "Escape") {
+        clear();
+      } else if (event.key === "Backspace") {
+        backSpace();
+      } else {
+        onOperatorButtonClick(event.key);
+      }
+      updateDisplay();
+    }
+  })
+}
+
 setUpOperatorButtons();
 setUpNumberButtons();
+setUpKeyboardButtons();
 clear();
 updateDisplay();

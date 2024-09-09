@@ -1,0 +1,45 @@
+#calculator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#display {
+  display: inline-block;
+  min-width: 5.4em;
+  color: white;
+  background: black;
+  padding: 10px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  flex: 4;
+}
+
+.row {
+  display: flex;
+  flex: 1;
+}
+
+.numberButtons {
+  width: 2em;
+  color: white;
+  background: black;
+}
+
+.operatorButtons {
+  width: 2em;
+  color: white;
+  background: black;
+}
+
+#clear {
+  width: 4em;
+}
+
+#zero {
+  width: 4em;
+}

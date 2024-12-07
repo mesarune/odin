@@ -100,3 +100,38 @@ end
 caesar_cipher("Caesar cipher", 3)
 Fdhvdu flskhu
 => nil
+
+def caesar_decipher(string, number)
+  result = ""
+  uppercase_table = ("A".."Z").to_a
+  lowercase_table = ("a".."z").to_a
+  string_array = string.split("")
+  string_array.each do |str|
+    if uppercase_table.include?(str)
+      current_position = uppercase_table.index(str)
+      if current_position - number < 0
+        new_position = current_position - number + 25
+      else
+        new_position = current_position - number
+      end
+      result += uppercase_table[new_position]
+    else if lowercase_table.include?(str)
+        current_position = lowercase_table.index(str)
+        if current_position - number < 0
+          new_position = current_position - number + 25
+        else
+          new_position = current_position - number
+        end
+        result += lowercase_table[new_position]
+      else
+        result += str
+      end
+    end
+  end
+  puts result
+end
+=> :caesar_decipher
+
+caesar_decipher("Fdhvdu flskhu", 3)
+Caesar cipher
+=> nil

@@ -156,8 +156,8 @@ p "Test 123".downcase
 p 123.downcase
 (irb):112:in `<main>': undefined method `downcase' for an instance of Integer (NoMethodError)
 
-p 123.downcase
-     ^^^^^^^^^
+      p 123.downcase
+           ^^^^^^^^^
 	from <internal:kernel>:187:in `loop'
 	from /Users/mesa_rune/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/irb-1.13.1/exe/irb:9:in `<top (required)>'
 	from /Users/mesa_rune/.rbenv/versions/3.3.4/bin/irb:25:in `load'
@@ -166,12 +166,12 @@ p 123.downcase
 p 123.downcase(:ascii)
 (irb):113:in `<main>': undefined method `downcase' for an instance of Integer (NoMethodError)
 
-p 123.downcase(:ascii)
-     ^^^^^^^^^
-    from <internal:kernel>:187:in `loop'
-    from /Users/mesa_rune/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/irb-1.13.1/exe/irb:9:in `<top (required)>'
-    from /Users/mesa_rune/.rbenv/versions/3.3.4/bin/irb:25:in `load'
-    from /Users/mesa_rune/.rbenv/versions/3.3.4/bin/irb:25:in `<main>'
+      p 123.downcase(:ascii)
+           ^^^^^^^^^
+  from <internal:kernel>:187:in `loop'
+  from /Users/mesa_rune/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/irb-1.13.1/exe/irb:9:in `<top (required)>'
+  from /Users/mesa_rune/.rbenv/versions/3.3.4/bin/irb:25:in `load'
+  from /Users/mesa_rune/.rbenv/versions/3.3.4/bin/irb:25:in `<main>'
 
 p 123.to_s.downcase
 "123"
@@ -212,4 +212,3 @@ substrings("Howdy partner, sit down! How's it going?", dictionary)
  "part"=>1,
  "partner"=>1,
  "sit"=>1}
-

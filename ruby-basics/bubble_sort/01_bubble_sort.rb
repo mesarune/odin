@@ -11,8 +11,8 @@ irb(main):005> a = b
 irb(main):006> b = stock
 => 2
 
-irb(main):007> array = [0,2,2,3,4,78]
-=> [0, 2, 2, 3, 4, 78]
+irb(main):007> array = [4, 3, 78, 2, 0, 2]
+=> [4, 3, 78, 2, 0, 2]
 
 irb(main):008> array.length
 => 6

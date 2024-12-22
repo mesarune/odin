@@ -14,4 +14,5 @@ def bubble_sort(array)
       return array
     end
   end
+  return array
 end

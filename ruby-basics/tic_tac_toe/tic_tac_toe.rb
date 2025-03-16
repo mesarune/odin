@@ -1,3 +1,5 @@
+require_relative 'board.rb''player.rb'
+
 def turn(board, player)
   player.get_input(board)
   

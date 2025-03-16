@@ -3,6 +3,10 @@ class Player
     @symbol = symbol
   end
 
+  def to_s
+    @symbol.to_s
+  end
+
   def get_input(board)
     puts "#{self}の番です。座標をスペース区切りで入力してください"
     input = gets.chomp.split

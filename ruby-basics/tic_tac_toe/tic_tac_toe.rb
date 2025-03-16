@@ -2,7 +2,8 @@ require_relative 'board.rb'
 require_relative 'player.rb'
 
 def turn(board, player)
-  player.get_input(board)
+  while !player.get_input(board) do
+    puts "
   
   board.display_board
   

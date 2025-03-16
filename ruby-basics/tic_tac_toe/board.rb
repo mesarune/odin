@@ -8,7 +8,8 @@ class Board
     end
 
     def set_symbol(player, x, y)
-        if x != 0 || x != 1 || x != 2
+        if [0, 1, 2].includes?(x)
+            return false
             
         @board[y][x] = player
     end

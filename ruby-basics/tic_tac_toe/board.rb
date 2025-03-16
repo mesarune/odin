@@ -7,6 +7,10 @@ class Board
         puts @board.map { |row| row.join("|") }.join("\n-+-+-\n")
     end
 
+    def set_symbol(player, x, y)
+        @board[y][x] = player
+    end
+
     def check_result(player)
         3.times do |i|
             if @board[i][0] == player && @board[i][1] == player && @board[i][2] == player

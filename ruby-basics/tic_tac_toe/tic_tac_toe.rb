@@ -21,4 +21,4 @@ o = Player.new("o")
   turn(board, current_player)
 end
   
-puts "引き分け”
+puts "引き分け"

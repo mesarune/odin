@@ -1,4 +1,5 @@
-require_relative 'board.rb''player.rb'
+require_relative 'board.rb'
+require_relative 'player.rb'
 
 def turn(board, player)
   player.get_input(board)

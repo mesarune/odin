@@ -10,7 +10,7 @@ class Player
     y = input[0].to_i
     x = input[1].to_i
 
-    board[y][x] = @symbol
+    board.set_symbol(self, x, y)
   end
 
 end

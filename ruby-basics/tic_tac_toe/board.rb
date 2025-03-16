@@ -10,7 +10,7 @@ class Board
     def set_symbol(player, x, y)
         if [0, 1, 2].include?(x)
             if [0, 1, 2].include?(y)
-                if @board[y][x] = " "
+                if @board[y][x] == " "
                     @board[y][x] = player
                 end
             end

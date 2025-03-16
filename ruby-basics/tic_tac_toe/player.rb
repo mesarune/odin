@@ -7,10 +7,10 @@ class Player
     puts "座標をスペース区切りで入力してください"
     input = gets.chomp.split
 
-    x = input[0].to_i
-    y = input[1].to_i
+    y = input[0].to_i
+    x = input[1].to_i
 
-    board[x][y] = @symbol
+    board[y][x] = @symbol
   end
 
 end

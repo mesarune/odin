@@ -4,6 +4,7 @@ require_relative 'player.rb'
 def turn(board, player)
   while !player.get_input(board) do
     puts "正しい座標を入力してください"
+  end
   
   board.display_board
   

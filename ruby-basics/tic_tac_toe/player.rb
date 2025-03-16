@@ -4,7 +4,7 @@ class Player
   end
 
   def get_input(board)
-    puts "座標をスペース区切りで入力してください"
+    puts "#{self}の番です。座標をスペース区切りで入力してください"
     input = gets.chomp.split
 
     y = input[0].to_i

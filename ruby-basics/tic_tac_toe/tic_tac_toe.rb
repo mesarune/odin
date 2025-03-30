@@ -10,7 +10,7 @@ def turn(board, player)
   
   if board.check_result(player)
     puts "#{player} の勝ち"
-    exit
+    return true
   end
 end
   
@@ -23,7 +23,11 @@ o = Player.new("o")
 9.times do |i|
   current_player = i%2 == 0? x : o
 
-  turn(board, current_player)
+  if turn(board, current_player)
+    exit
+  end
 end
   
 puts "引き分け"
+
+exit

@@ -14,26 +14,43 @@ EOS
 
 puts description
 
-def check_feedback(input, solution)
+def check_input(input, solution)
     if input == solution
         puts "あなたの勝ち"
         exit
     end
 end
 
+class Board
+    def initialize
+        @guesses = []
+        @solution = []
+    end
+    
+    def set_input(input)
+        @guesses << input
+    end
+
+    def set_solution(solution)
+        @solution << solution
+    end
+
+    def display_board
+        puts 
+
 board = Board.new
 com = Computer.new
 player = Player.new
 
-com.get_input
-board.set_input
+solution = com.get_input
+board.set_solution(solution)
 
 10.times do |i|
-    player.get_input
-    board.set_input
+    input = player.get_input
+    board.set_input(input)
     board.set_feedback
     board.display_board
-    check_feedback(input, solution)
+    board.check_input(input, solution)
 end
 
 puts "あなたの負け"

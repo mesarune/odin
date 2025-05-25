@@ -21,23 +21,35 @@ class Board
         @feedback = []
     end
     
-    def set_solution(solution)
-        @solution << solution
+    def set_solution
+        colors = "rgypmc".split("")
+        @solution = colors.shuffle.take(4)
     end
 
     def set_input(input)
-        @guesses << input
+        @guesses = input
+        set_feedback
     end
 
-    def set_feedback(input, solution)
-
+    def set_feedback
+        @feedback = @guesses.zip(@solution).map do |a| 
+            if a[0] == a[1]
+                return "b"
+            else if @solution.include?(a[0])
+                return "w"
+            else
+                return " "
+            end
+        end
+    end
+        
     def display_board
         display = [@guesses, @feedback]
         puts display.map { |row| row.join("|") }.join("\n-+-+-+-\n")
     end
 
-    def check_input(input, solution)
-        if input == solution
+    def check_input
+        if @guesses == @solution
             puts "あなたの勝ち"
             exit
         end
@@ -45,18 +57,15 @@ class Board
 end
 
 board = Board.new
-com = Computer.new
 player = Player.new
 
-solution = com.get_input
-board.set_solution(solution)
+board.set_solution
 
 10.times do |i|
     input = player.get_input
     board.set_input(input)
-    board.set_feedback
     board.display_board
-    board.check_input(input, solution)
+    board.check_input
 end
 
 puts "あなたの負け"

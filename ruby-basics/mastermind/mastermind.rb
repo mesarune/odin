@@ -14,29 +14,35 @@ EOS
 
 puts description
 
-def check_input(input, solution)
-    if input == solution
-        puts "あなたの勝ち"
-        exit
-    end
-end
-
 class Board
     def initialize
-        @guesses = []
         @solution = []
+        @guesses = []
+        @feedback = []
     end
     
-    def set_input(input)
-        @guesses << input
-    end
-
     def set_solution(solution)
         @solution << solution
     end
 
+    def set_input(input)
+        @guesses << input
+    end
+
+    def set_feedback(input, solution)
+
     def display_board
-        puts 
+        display = [@guesses, @feedback]
+        puts display.map { |row| row.join("|") }.join("\n-+-+-+-\n")
+    end
+
+    def check_input(input, solution)
+        if input == solution
+            puts "あなたの勝ち"
+            exit
+        end
+    end
+end
 
 board = Board.new
 com = Computer.new

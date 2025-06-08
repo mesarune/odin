@@ -28,7 +28,6 @@ class Board
     end
 
     def set_feedback
-        puts "最初のフィードバック"
         @feedback = @guesses.zip(@solution).map do |a| 
             if a[0] == a[1]
                 "b"
@@ -38,9 +37,6 @@ class Board
                 " "
             end
         end
-        puts "フィードバックを表示します"
-        p @feedback
-        p @solution
     end
         
     def display_board

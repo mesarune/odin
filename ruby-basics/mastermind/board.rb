@@ -7,7 +7,8 @@ class Board
         "p"=> "\e[34m●\e[0m",
         "m"=> "\e[35m●\e[0m",
         "c"=> "\e[36m●\e[0m",
-        "b"=> "\e[30m●\e[0m",
+        " "=> "\e[30m●\e[0m",
+        "b"=> "☆",
         "w"=> "\e[37m●\e[0m",
     }
 
@@ -18,7 +19,7 @@ class Board
     end
     
     def set_solution
-        choices = "rgypmc".split("")
+        choices = "rrrrggggyyyyppppmmmmcccc".split("")
         @solution = choices.shuffle.take(4)
     end
 

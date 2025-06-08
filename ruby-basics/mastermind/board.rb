@@ -31,11 +31,11 @@ class Board
         puts "最初のフィードバック"
         @feedback = @guesses.zip(@solution).map do |a| 
             if a[0] == a[1]
-                return "b"
+                "b"
             elsif @solution.include?(a[0])
-                return "w"
+                "w"
             else
-                return " "
+                " "
             end
         end
         puts "フィードバックを表示します"

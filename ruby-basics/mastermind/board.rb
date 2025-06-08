@@ -37,7 +37,7 @@ class Board
                 return " "
             end
         end
-        
+        puts "フィードバックを表示します"
         p @feedback
         p @solution
     end

@@ -4,7 +4,7 @@ class Player
 
     def get_input
         loop do
-            puts "入力してください”
+            puts "入力してください"
             input = gets.chomp.split
             
             if !input.all? { |s| valid_input.include?(s) }

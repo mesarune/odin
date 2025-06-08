@@ -1,6 +1,6 @@
 class Board
 
-    colors = {
+    @@colors = {
         "r": "\e[31m●\e[0m",
         "g": "\e[32m●\e[0m",
         "y": "\e[33m●\e[0m",
@@ -40,8 +40,8 @@ class Board
     end
         
     def display_board
-        guesses = @guesses.map{ |s| colors[s] }
-        feedback = @feedback.map{ |s| colors[s] }
+        guesses = @guesses.map{ |s| @@colors[s] }
+        feedback = @feedback.map{ |s| @@colors[s] }
         display = [guesses, feedback]
         puts display.map { |row| row.join("|") }.join("\n-+-+-+-\n")
     end

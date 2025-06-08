@@ -44,8 +44,8 @@ class Board
         feedback = @feedback.map{ |s| @@colors[s] }
         display = [guesses, feedback]
         puts display.map { |row| row.join("|") }.join("\n-+-+-+-\n")
-        p @guesses
-        p @feedback
+        p guesses
+        p feedback
     end
 
     def check_input

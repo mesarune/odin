@@ -37,6 +37,9 @@ class Board
                 return " "
             end
         end
+        
+        p @feedback
+        p @solution
     end
         
     def display_board

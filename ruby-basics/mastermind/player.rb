@@ -1,6 +1,6 @@
 class Player
 
-    valid_input = ["r", "g", "y", "p", "m", "c"]
+    @valid_input = ["r", "g", "y", "p", "m", "c"]
 
     def get_input
         loop do

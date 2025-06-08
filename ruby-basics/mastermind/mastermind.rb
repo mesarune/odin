@@ -55,9 +55,9 @@ class Board
     end
         
     def display_board
-        @guesses.map!{ |s| colors[s] }
-        @feedback.map!{ |s| colors[s] }
-        display = [@guesses, @feedback]
+        guesses = @guesses.map{ |s| colors[s] }
+        feedback = @feedback.map{ |s| colors[s] }
+        display = [guesses, feedback]
         puts display.map { |row| row.join("|") }.join("\n-+-+-+-\n")
     end
 

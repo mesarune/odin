@@ -9,7 +9,7 @@ class Player
             
             if !input.all? { |s| @@valid_input.include?(s) }
              puts "無効な入力です"
-            elsif !input.length == 4
+            elsif input.length != 4
              puts "無効な入力です"
             else
              return input

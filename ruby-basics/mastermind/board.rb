@@ -7,7 +7,7 @@ class Board
         "p"=> "\e[34m●\e[0m",
         "m"=> "\e[35m●\e[0m",
         "c"=> "\e[36m●\e[0m",
-        " "=> " ",
+        "x"=> " ",
         "b"=> "☆",
         "w"=> "\e[37m●\e[0m",
     }
@@ -35,9 +35,11 @@ class Board
             elsif @solution.include?(a[0])
                 "w"
             else
-                " "
+                "x"
             end
         end
+
+        @feedback.sort!
     end
         
     def display_board

@@ -15,11 +15,9 @@ def turn(board, player)
 end
   
 board = Board.new
-  
 x = Player.new("x")
-  
 o = Player.new("o")
-  
+
 9.times do |i|
   current_player = i%2 == 0? x : o
 

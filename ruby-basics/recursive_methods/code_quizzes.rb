@@ -57,3 +57,69 @@ def flattens(arr)
     result
 end
 
+# 6. Use the roman_mapping hash to define a recursive method that converts an integer to a Roman numeral.
+
+ROMAN_MAPPING = {
+  1000 => "M",
+  900 => "CM",
+  500 => "D",
+  400 => "CD",
+  100 => "C",
+  90 => "XC",
+  50 => "L",
+  40 => "XL",
+  10 => "X",
+  9 => "IX",
+  5 => "V",
+  4 => "IV",
+  1 => "I"
+}
+
+def integer_to_roman(int, map = ROMAN_MAPPING)
+    if int <= 0
+        return ""
+    end
+    result = ""
+    map.each do |key, value|
+        quotient = int / key
+        modulus = int % key
+        if quotient > 0
+            result << value * quotient
+            result << integer_to_roman(modulus, map)
+            return result
+        end
+    end
+end
+
+# 7. Use the roman_mapping hash to define a recursive method that converts a Roman numeral to an integer.
+
+INTEGER_MAPPING = {
+  "M" => 1000,
+  "CM" => 900,
+  "D" => 500,
+  "CD" => 400,
+  "C" => 100,
+  "XC" => 90,
+  "L" => 50,
+  "XL" => 40,
+  "X" => 10,
+  "IX" => 9,
+  "V" => 5,
+  "IV" => 4,
+  "I" => 1
+}
+
+def roman_to_integer(roman, map = INTEGER_MAPPING)
+    if roman == ""
+        return 0
+    end
+    result = 0
+    map.each do |key, value|
+        if roman.start_with?(key)
+            roman = roman[key.length..-1]
+            result += value
+            result += roman_to_integer(roman, map)
+            return result
+        end
+    end
+end

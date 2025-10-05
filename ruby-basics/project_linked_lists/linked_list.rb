@@ -97,6 +97,7 @@ class LinkedList
                 return index
             end
             current_node = current_node.next_node
+            index += 1
         end
         return nil
     end

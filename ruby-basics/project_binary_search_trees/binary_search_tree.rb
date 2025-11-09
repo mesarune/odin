@@ -31,8 +31,8 @@ class Tree
         mid = (array.length - 1) / 2
         node = Node.new(array[mid])
         
-        node.left = build_tree(array[0...mid])
-        node.right = build_tree(array[mid + 1..-1])
+        node.left = recursive_build(array[0...mid])
+        node.right = recursive_build(array[mid + 1..-1])
         return node
     end
 

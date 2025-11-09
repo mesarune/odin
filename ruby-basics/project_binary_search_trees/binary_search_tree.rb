@@ -15,11 +15,15 @@ end
 class Tree
     attr_accessor :root
     def initialize(array = [])
-        sorted_array = array.sort.uniq
-        @root = build_tree(sorted_array)
+        @root = build_tree(array)
     end
 
     def build_tree(array)
+        sorted_array = array.uniq.sort
+        recursive_build(sorted_array)
+    end
+
+    private def recursive_build(array)
         if array.empty?
             return nil
         end
@@ -217,7 +221,7 @@ class Tree
         return count_height(target_node)
     end
 
-    def count_height(node = @root)
+    private def count_height(node = @root)
         if node.nil?
             return -1
         end

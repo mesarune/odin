@@ -1,7 +1,11 @@
 def knight_moves(start_position, target_position)
-    queue = []
-    visited_positions = [start_position]
+    if !valid_position?(start_position) || !valid_position?(target_position)
+        puts "Error: Start or target position is outside the 8*8 board"
+        return nil
+    end
 
+    queue = []
+    visited_positions = { start_position => true }
     first_step = Step.new(start_position, nil)
     queue << first_step
 
@@ -18,7 +22,12 @@ def knight_moves(start_position, target_position)
             return path
         end
 
-        calculate_next_steps(current_step, target_position, queue, visited_positions)
+        next_positions = calculate_next_steps(current_position, visited_positions)
+        next_positions.each do |next_position|
+            new_step = Step.new(next_position, current_step)
+            queue << new_step
+            visited_positions[next_position] = true
+        end
     end
     return nil
 end
@@ -35,8 +44,13 @@ end
 
 private
 
-def calculate_next_steps(current_step, target_position, queue, visited_positions)
-    current_position = current_step.position
+def valid_position?(position)
+    x, y = position
+    (0..7).include?(x) && (0..7).include?(y)
+end
+
+def calculate_next_steps(current_position, visited_positions)
+    next_valid_positions = []
     current_x = current_position[0]
     current_y = current_position[1]
     MOVES.each do |move_x, move_y|
@@ -44,19 +58,17 @@ def calculate_next_steps(current_step, target_position, queue, visited_positions
         next_y = current_y + move_y
         next_position = [next_x, next_y]
 
-        if !(0..7).include?(next_x) || !(0..7).include?(next_y)
+        if !valid_position?(next_position)
             next
         end
 
-        if visited_positions.include?(next_position)
+        if visited_positions.key?(next_position)
             next
         end
 
-        new_step = Step.new(next_position, current_step)
-
-        queue << new_step
-        visited_positions << next_position
+        next_valid_positions << next_position
     end
+    return next_valid_positions
 end
 
 def trace_back_steps(final_step)

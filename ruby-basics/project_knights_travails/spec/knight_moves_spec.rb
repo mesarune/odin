@@ -10,9 +10,21 @@ it 'retruns the shortest path to the target position' do
   expect(path.last).to eq(target_position)
 end
 
+it 'returns nil if the start position is off the board' do
+  start_position = [8, 3]
+  target_position = [4, 3]
+  expect(knight_moves(start_position, target_position)).to be_nil
+end
+
 it 'returns nil if the target position is off the board' do
   start_position = [3, 3]
   target_position = [8, 3]
   expect(knight_moves(start_position, target_position)).to be_nil
+end
+
+it 'return the start position if it matches the target position' do
+  start_position = [4, 3]
+  target_position = [4, 3]
+  expect(knight_moves(start_position, target_position)).to eq([start_position])
 end
 end

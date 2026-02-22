@@ -113,11 +113,26 @@ class Pawn < Piece
     @color == :white ? -1 : 1
   end
 
+  def start_row?
+    @color == :white ? @position[0] == 6 : @position[0] == 1
+  end
+
   def valid_move?(to_position, board)
     difference_row = to_position[0] - @position[0]
     difference_col = to_position[1] - @position[1]
 
-    difference_col == 0 && difference_row == move_forward && !board.path_blocked?(@position, to_position)
+    if difference_col == 0
+      return false if board.find_piece_at(to_position)
+      return true if difference_row == move_forward
+
+      if start_row? && difference_row == move_forward * 2
+        return !board.path_blocked?(@position, to_position)
+      end
+
+    elsif difference_col.abs == 1 && difference_row == move_forward
+      return board.enemy_at?(to_position, @color)
+    end
+    false
   end
   
 end

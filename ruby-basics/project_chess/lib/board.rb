@@ -1,13 +1,46 @@
+require 'json'
 require_relative 'pieces'
 
 class Board
-    attr_reader :grid
     attr_accessor :white_pieces, :black_pieces
 
     def initialize
         @white_pieces = []
         @black_pieces = []
         setup_pieces
+    end
+
+    def save_game(current_player)
+        data = {
+            current_player: current_player,
+            white: @white_pieces.map { |piece| { class: piece.class.name, color: piece.color, position: piece.position } },
+            black: @black_pieces.map { |piece| { class: piece.class.name, color: piece.color, position: piece.position } }
+        }
+
+        File.open("savegame.json", "w") do |file|
+            file.write(JSON.pretty_generate(data))
+        end
+        puts "Game saved."
+    end
+
+    def load_game
+        return unless File.exist?("savegame.json")
+
+        file = File.read("savegame.json")
+        data = JSON.parse(file)
+
+        @white_pieces = []
+        @black_pieces = []
+
+        data["white"].each do |piece|
+            @white_pieces << Object.const_get(piece["class"]).new(piece["color"].to_sym, piece["position"])
+        end
+
+        data["black"].each do |piece|
+            @black_pieces << Object.const_get(piece["class"]).new(piece["color"].to_sym, piece["position"])
+        end
+
+        data["current_player"].to_sym
     end
 
     def setup_pieces
@@ -125,6 +158,17 @@ class Board
             true
         else
             false
+        end
+    end
+
+    def in_check?(color)
+        king = (color == :white ? @white_pieces : @black_pieces).find { |piece| piece.is_a?(King) }
+        return false unless king
+
+        enemy_pieces = (color == :white ? @black_pieces : @white_pieces)
+
+        enemy_pieces.any? do |piece|
+            piece.valid_move?(king.position, self)
         end
     end
 

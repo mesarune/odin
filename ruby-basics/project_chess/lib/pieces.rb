@@ -118,19 +118,21 @@ class Pawn < Piece
   end
 
   def valid_move?(to_position, board)
-    difference_row = to_position[0] - @position[0]
-    difference_col = to_position[1] - @position[1]
+    d_row = to_position[0] - @position[0]
+    d_col = to_position[1] - @position[1]
+    fwd = move_forward
 
-    if difference_col == 0
-      return false if board.find_piece_at(to_position)
-      return true if difference_row == move_forward
+    if d_col.abs == 1 && (d_row == (fwd * 2) || d_row == fwd)
+      return true if board.enemy_at?(to_position, @color)
+    end
 
-      if start_row? && difference_row == move_forward * 2
-        return !board.path_blocked?(@position, to_position)
+    if d_col == 0
+      return false unless board.find_piece_at(to_position).nil?
+      return true if d_row == fwd
+      if d_row == fwd * 2 && start_row?
+        one_step = [@position[0] + fwd, @position[1]]
+        return true if board.find_piece_at(one_step).nil?
       end
-
-    elsif difference_col.abs == 1 && difference_row == move_forward
-      return board.enemy_at?(to_position, @color)
     end
     false
   end

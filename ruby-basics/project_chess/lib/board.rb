@@ -137,12 +137,8 @@ class Board
     end
 
     def capture_piece_at(to_position)
-        target = find_piece_at(to_position)
-        
-        if target
-            @white_pieces.delete(target)
-            @black_pieces.delete(target)
-        end
+        @white_pieces.reject! { |piece| piece.position == to_position }
+        @black_pieces.reject! { |piece| piece.position == to_position }
     end
 
     def move_piece(from_position, to_position)
@@ -155,6 +151,9 @@ class Board
         if moving_piece.valid_move?(to_position, self)
             capture_piece_at(to_position)
             moving_piece.position = to_position
+            if (["♟", "♙"].include?(moving_piece.symbol)) && (moving_piece.position[0] == 0 || moving_piece.position[0] == 7)
+                promote_pawn(moving_piece)
+            end
             true
         else
             false
@@ -173,14 +172,31 @@ class Board
     end
 
     def game_over?(current_player)
-        pieces = current_player == :white ? @black_pieces : @white_pieces
-        if pieces.none? { |piece| piece.is_a?(King) }
-          puts "--------------------------"
-          puts "Checkmate! #{current_player.capitalize} wins!"
-          puts "--------------------------"
+        pieces = (current_player == :white ? @black_pieces : @white_pieces)
+        if pieces.none? { |piece| piece.symbol == "♚" || piece.symbol == "♔" }
+          puts "-----------------------------"
+          puts "CHECKMATE. Player #{current_player} wins."
+          puts "-----------------------------"
           return true
         end
         false
+    end
+
+    private
+
+    def promote_pawn(pawn)
+        color = pawn.color
+        position = pawn.position
+
+        new_queen = Queen.new(color, position)
+
+        if color == :white
+            @white_pieces.delete(pawn)
+            @white_pieces << new_queen
+        else
+            @black_pieces.delete(pawn)
+            @black_pieces << new_queen
+        end
     end
 
 end

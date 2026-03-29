@@ -20,7 +20,7 @@ end
 
 loop do
   board.display_board
-  puts "Player #{current_player}, move your piece. (a2,b7): "
+  puts "Player #{current_player}, move your piece. (e2,e4): "
   player_input = gets.chomp.downcase
 
   break if player_input == 'exit'
@@ -31,15 +31,13 @@ loop do
   end
 
   unless player_input =~ /^[a-h][1-8],[a-h][1-8]$/
-    puts "Invalid input format. Please use 'a2,b7' style."
+    puts "Invalid input format. Please use 'e2,e4' style."
     next
   end
 
   input = player_input.split(",")
-
   from_position = translate_location(input[0])
   to_position = translate_location(input[1])
-
   moving_piece = board.find_piece_at(from_position)
 
   if moving_piece && moving_piece.color == current_player
@@ -47,7 +45,9 @@ loop do
       break if board.game_over?(current_player)
       current_player = (current_player == :white ? :black : :white)
       if board.in_check?(current_player)
+        puts "-----------------------------"
         puts "CHECK. King is under attack."
+        puts "-----------------------------"
       end
     else
       puts "Invalid move."

@@ -1,0 +1,239 @@
+{
+  "current_player": "white",
+  "white": [
+    {
+      "class": "Pawn",
+      "color": "white",
+      "position": [
+        6,
+        0
+      ]
+    },
+    {
+      "class": "Pawn",
+      "color": "white",
+      "position": [
+        6,
+        1
+      ]
+    },
+    {
+      "class": "Pawn",
+      "color": "white",
+      "position": [
+        6,
+        2
+      ]
+    },
+    {
+      "class": "Pawn",
+      "color": "white",
+      "position": [
+        6,
+        3
+      ]
+    },
+    {
+      "class": "Pawn",
+      "color": "white",
+      "position": [
+        6,
+        5
+      ]
+    },
+    {
+      "class": "Pawn",
+      "color": "white",
+      "position": [
+        6,
+        6
+      ]
+    },
+    {
+      "class": "Pawn",
+      "color": "white",
+      "position": [
+        6,
+        7
+      ]
+    },
+    {
+      "class": "Rook",
+      "color": "white",
+      "position": [
+        7,
+        0
+      ]
+    },
+    {
+      "class": "Knight",
+      "color": "white",
+      "position": [
+        7,
+        1
+      ]
+    },
+    {
+      "class": "Bishop",
+      "color": "white",
+      "position": [
+        7,
+        2
+      ]
+    },
+    {
+      "class": "Queen",
+      "color": "white",
+      "position": [
+        7,
+        3
+      ]
+    },
+    {
+      "class": "King",
+      "color": "white",
+      "position": [
+        7,
+        4
+      ]
+    },
+    {
+      "class": "Bishop",
+      "color": "white",
+      "position": [
+        7,
+        5
+      ]
+    },
+    {
+      "class": "Knight",
+      "color": "white",
+      "position": [
+        7,
+        6
+      ]
+    },
+    {
+      "class": "Rook",
+      "color": "white",
+      "position": [
+        7,
+        7
+      ]
+    },
+    {
+      "class": "Queen",
+      "color": "white",
+      "position": [
+        0,
+        3
+      ]
+    }
+  ],
+  "black": [
+    {
+      "class": "Pawn",
+      "color": "black",
+      "position": [
+        1,
+        0
+      ]
+    },
+    {
+      "class": "Pawn",
+      "color": "black",
+      "position": [
+        1,
+        1
+      ]
+    },
+    {
+      "class": "Pawn",
+      "color": "black",
+      "position": [
+        1,
+        2
+      ]
+    },
+    {
+      "class": "Pawn",
+      "color": "black",
+      "position": [
+        1,
+        5
+      ]
+    },
+    {
+      "class": "Pawn",
+      "color": "black",
+      "position": [
+        1,
+        6
+      ]
+    },
+    {
+      "class": "Pawn",
+      "color": "black",
+      "position": [
+        1,
+        7
+      ]
+    },
+    {
+      "class": "Rook",
+      "color": "black",
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "class": "Knight",
+      "color": "black",
+      "position": [
+        2,
+        2
+      ]
+    },
+    {
+      "class": "Bishop",
+      "color": "black",
+      "position": [
+        0,
+        2
+      ]
+    },
+    {
+      "class": "King",
+      "color": "black",
+      "position": [
+        1,
+        4
+      ]
+    },
+    {
+      "class": "Bishop",
+      "color": "black",
+      "position": [
+        0,
+        5
+      ]
+    },
+    {
+      "class": "Knight",
+      "color": "black",
+      "position": [
+        0,
+        6
+      ]
+    },
+    {
+      "class": "Rook",
+      "color": "black",
+      "position": [
+        0,
+        7
+      ]
+    }
+  ]
+}

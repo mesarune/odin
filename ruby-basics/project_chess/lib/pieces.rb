@@ -2,7 +2,7 @@ require_relative 'board'
 
 class Piece
   attr_accessor :position
-  attr_reader :color, :symbol
+  attr_reader :color, :symbol, :value
 
   def initialize(color, position)
     @color = color
@@ -23,11 +23,11 @@ class Piece
     end
   end
 
-  private
-
   def sliding?
     [Rook, Bishop, Queen].include?(self.class)
   end
+
+  private
 
   def can_step_to?(difference_row, difference_col)
     move_directions.include?([difference_row, difference_col])
@@ -47,6 +47,7 @@ class Rook < Piece
   def initialize(color, position)
     super
     @symbol = (color == :white ? "♜" : "♖")
+    @value = 50
   end
 
   def move_directions
@@ -59,6 +60,7 @@ class Bishop < Piece
   def initialize(color, position)
     super
     @symbol = (color == :white ? "♝" : "♗")
+    @value = 30
   end
 
   def move_directions
@@ -71,6 +73,7 @@ class Queen < Piece
   def initialize(color, position)
     super
     @symbol = (color == :white ? "♛" : "♕")
+    @value = 90
   end
 
   def move_directions
@@ -83,6 +86,7 @@ class Knight < Piece
   def initialize(color, position)
     super
     @symbol = (color == :white ? "♞" : "♘")
+    @value = 30
   end
 
   def move_directions
@@ -95,6 +99,7 @@ class King < Piece
   def initialize(color, position)
     super
     @symbol = (color == :white ? "♚" : "♔")
+    @value = 900
   end
 
   def move_directions
@@ -107,6 +112,7 @@ class Pawn < Piece
   def initialize(color, position)
     super
     @symbol = (color == :white ? "♟" : "♙")
+    @value = 10
   end
 
   def move_forward

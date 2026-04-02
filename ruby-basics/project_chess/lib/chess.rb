@@ -20,8 +20,50 @@ end
 
 loop do
   board.display_board
-  puts "Player #{current_player}, move your piece. (e2,e4): "
-  player_input = gets.chomp.downcase
+  if current_player == :black
+    puts "Player black is thinking..."
+    sleep(5)
+    moves = board.all_valid_moves(:black)
+    if moves.empty?
+      puts "-----------------------------"
+      puts "STALEMATE. Player white wins."
+      puts "-----------------------------"
+      break
+    end
+    # --- Minimax (Depth 2) --- #
+    best_score = 99999
+    selected_move = moves.sample
+    moves.each do |move|
+      captured = board.execute_move(move[:from], move[:to])
+      opponent_moves = board.all_valid_moves(:white)
+      max_score_for_white = -99999
+      if opponent_moves.empty?
+        max_score_for_white = -999
+      else
+        opponent_moves.each do |o_move|
+          o_captured = board.execute_move(o_move[:from], o_move[:to])
+          current_evaluate = board.evaluate
+          if current_evaluate > max_score_for_white
+            max_score_for_white = current_evaluate
+          end
+          board.undo_move(o_move[:from], o_move[:to], o_captured)
+        end
+      end
+      if max_score_for_white < best_score
+        best_score = max_score_for_white
+        selected_move = move
+      end
+      board.undo_move(move[:from], move[:to], captured)
+    end
+    # ------------------------- #
+    from_str = "#{(selected_move[:from][1] + 97).chr}#{8 - selected_move[:from][0]}"
+    to_str = "#{(selected_move[:to][1] + 97).chr}#{8 - selected_move[:to][0]}"
+    player_input = "#{from_str},#{to_str}"
+    puts "Player black: #{player_input} (Score: #{best_score})"
+  else
+    puts "Player white, move your piece. (e2,e4): "
+    player_input = gets.chomp.downcase
+  end
 
   break if player_input == 'exit'
 
@@ -44,11 +86,6 @@ loop do
     if board.move_piece(from_position, to_position)
       break if board.game_over?(current_player)
       current_player = (current_player == :white ? :black : :white)
-      if board.in_check?(current_player)
-        puts "-----------------------------"
-        puts "CHECK. King is under attack."
-        puts "-----------------------------"
-      end
     else
       puts "Invalid move."
     end

@@ -182,6 +182,75 @@ class Board
         false
     end
 
+    def evaluate
+        score = 0
+        @white_pieces.each { |p| score += p.value }
+        @black_pieces.each { |p| score -= p.value }
+        score
+    end
+
+    def execute_move(from_position, to_position)
+        moving_piece = find_piece_at(from_position)
+        captured_piece = find_piece_at(to_position)
+        if captured_piece
+            @white_pieces.delete(captured_piece)
+            @black_pieces.delete(captured_piece)
+        end
+        moving_piece.position = to_position
+        captured_piece
+    end
+
+    def undo_move(from_position, to_position, captured_piece)
+        moving_piece = find_piece_at(to_position)
+        moving_piece.position = from_position
+        if captured_piece
+            if captured_piece.color == :white
+                @white_pieces << captured_piece
+            else
+                @black_pieces << captured_piece
+            end
+        end
+    end
+
+    def all_valid_moves(color)
+        moves = []
+        my_pieces = (color == :white ? @white_pieces : @black_pieces)
+
+        my_pieces.each do |piece|
+            if piece.is_a?(Pawn)
+                8.times do |row|
+                    8.times do |col|
+                        to_position = [row, col]
+                        if piece.valid_move?(to_position, self) && !ally_at?(to_position, color)
+                            moves << { from: piece.position, to: to_position}
+                        end
+                    end
+                end
+                next
+            end
+            piece.move_directions.each do |dir_row, dir_col|
+                if piece.sliding?
+                    1.upto(7) do |steps|
+                        to_position = [piece.position[0] + dir_row * steps, piece.position[1] + dir_col * steps]
+                        break if out_of_bounds?(to_position)
+                        if piece.valid_move?(to_position, self) && !ally_at?(to_position, color)
+                            moves << { from: piece.position, to: to_position }
+                        end
+                        break if find_piece_at(to_position)
+                    end
+                else
+                    to_position = [piece.position[0] + dir_row, piece.position[1] + dir_col]
+                    unless out_of_bounds?(to_position)
+                        if piece.valid_move?(to_position, self) && !ally_at?(to_position, color)
+                            moves << { from: piece.position, to: to_position}
+                        end
+                    end
+                end
+            end
+        end
+        moves
+    end
+
     private
 
     def promote_pawn(pawn)

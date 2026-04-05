@@ -2,11 +2,12 @@ require 'json'
 require_relative 'pieces'
 
 class Board
-    attr_accessor :white_pieces, :black_pieces
+    attr_accessor :white_pieces, :black_pieces, :en_passant_target
 
     def initialize
         @white_pieces = []
         @black_pieces = []
+        @en_passant_target = nil
         setup_pieces
     end
 
@@ -149,14 +150,38 @@ class Board
         return false if ally_at?(to_position, moving_piece.color)
         
         if moving_piece.valid_move?(to_position, self)
+            if moving_piece.is_a?(King) && (to_position[1] - from_position[1]).abs == 2
+                execute_rook_move_for_castle(from_position, to_position)
+            end
+
+            if moving_piece.is_a?(Pawn) && to_position == @en_passant_target
+                capture_pawn_behind(to_position, moving_piece.color)
+            end
+
+            if moving_piece.is_a?(Pawn) && (to_position[0] - from_position[0]).abs == 2
+                @en_passant_target = [(from_position[0] + to_position[0]) / 2, from_position[1]]
+            else
+                @en_passant_target = nil
+            end
+
             capture_piece_at(to_position)
             moving_piece.position = to_position
+
             if (["♟", "♙"].include?(moving_piece.symbol)) && (moving_piece.position[0] == 0 || moving_piece.position[0] == 7)
                 promote_pawn(moving_piece)
             end
+
+            moving_piece.has_moved = true
             true
         else
             false
+        end
+    end
+
+    def square_under_attack?(position, opponent_color)
+        enemy_pieces = (opponent_color == :white ? @white_pieces : @black_pieces)
+        enemy_pieces.any? do |piece|
+            piece.valid_move?(position, self)
         end
     end
 
@@ -164,11 +189,8 @@ class Board
         king = (color == :white ? @white_pieces : @black_pieces).find { |piece| piece.is_a?(King) }
         return false unless king
 
-        enemy_pieces = (color == :white ? @black_pieces : @white_pieces)
-
-        enemy_pieces.any? do |piece|
-            piece.valid_move?(king.position, self)
-        end
+        opponent_color = (color == :white ? :black : :white)
+        square_under_attack?(king.position, opponent_color)
     end
 
     def game_over?(current_player)
@@ -266,6 +288,28 @@ class Board
             @black_pieces.delete(pawn)
             @black_pieces << new_queen
         end
+    end
+
+    def execute_rook_move_for_castle(from_position, to_position)
+        row = from_position[0]
+        is_kingside = to_position[1] > from_position[1]
+
+        original_col = is_kingside ? 7 : 0
+        target_col = is_kingside ? 5 : 3
+
+        rook = find_piece_at([row, original_col])
+        if rook
+            rook.position = [row, target_col]
+            rook.has_moved = true
+        end
+    end
+
+    def capture_pawn_behind(to_position, attacker_color)
+        target_row = (attacker_color == :white ? to_position[0] + 1 : to_position[0] - 1)
+        target_position = [target_row, to_position[1]]
+
+        @white_pieces.reject! { |piece| piece.position == target_position }
+        @black_pieces.reject! { |piece| piece.position == target_position }
     end
 
 end

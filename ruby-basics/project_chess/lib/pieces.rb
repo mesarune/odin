@@ -1,12 +1,13 @@
 require_relative 'board'
 
 class Piece
-  attr_accessor :position
+  attr_accessor :position, :has_moved
   attr_reader :color, :symbol, :value
 
   def initialize(color, position)
     @color = color
     @position = position
+    @has_moved = false
   end
 
   def valid_move?(to_position, board)
@@ -106,6 +107,39 @@ class King < Piece
     [[0, 1], [0, -1], [1, 0], [-1, 0], [1, 1], [1, -1], [-1, 1], [-1, -1]]
   end
 
+  def valid_move?(to_position, board)
+    return true if super
+    row, col = @position
+    to_row, to_col = to_position
+
+    if to_row == row && (to_col - col).abs == 2
+      return can_castle?(to_position, board)
+    end
+    false
+  end
+
+  private
+
+  def can_castle?(to_position, board)
+    return false if @has_moved
+    return false if board.in_check?(@color)
+
+    row, col = @position
+    to_col = to_position[1]
+    is_kingside = to_col > col
+
+    rook_col = is_kingside ? 7 : 0
+    rook = board.find_piece_at([row, rook_col])
+    return false unless rook.is_a?(Rook) && !rook.has_moved
+    return false if board.path_blocked?(@position, [row, rook_col])
+
+    step = is_kingside ? 1 : -1
+    opponent_color = (@color == :white ? :black : :white)
+    return false if board.square_under_attack?([row, col + step], opponent_color)
+    return false if board.square_under_attack?([row, col + step * 2], opponent_color)
+    true
+  end
+
 end
 
 class Pawn < Piece
@@ -139,6 +173,10 @@ class Pawn < Piece
         one_step = [@position[0] + fwd, @position[1]]
         return true if board.find_piece_at(one_step).nil?
       end
+    end
+
+    if d_col.abs == 1 && d_row == fwd
+      return true if to_position == board.en_passant_target
     end
     false
   end

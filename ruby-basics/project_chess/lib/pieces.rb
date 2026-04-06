@@ -162,7 +162,7 @@ class Pawn < Piece
     d_col = to_position[1] - @position[1]
     fwd = move_forward
 
-    if d_col.abs == 1 && (d_row == (fwd * 2) || d_row == fwd)
+    if d_col.abs == 1 && d_row == fwd
       return true if board.enemy_at?(to_position, @color)
     end
 

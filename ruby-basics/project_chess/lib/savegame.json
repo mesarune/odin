@@ -5,7 +5,7 @@
       "class": "Pawn",
       "color": "white",
       "position": [
-        6,
+        4,
         0
       ]
     },
@@ -13,23 +13,7 @@
       "class": "Pawn",
       "color": "white",
       "position": [
-        6,
-        1
-      ]
-    },
-    {
-      "class": "Pawn",
-      "color": "white",
-      "position": [
-        6,
-        2
-      ]
-    },
-    {
-      "class": "Pawn",
-      "color": "white",
-      "position": [
-        6,
+        3,
         3
       ]
     },
@@ -37,24 +21,8 @@
       "class": "Pawn",
       "color": "white",
       "position": [
-        6,
+        4,
         5
-      ]
-    },
-    {
-      "class": "Pawn",
-      "color": "white",
-      "position": [
-        6,
-        6
-      ]
-    },
-    {
-      "class": "Pawn",
-      "color": "white",
-      "position": [
-        6,
-        7
       ]
     },
     {
@@ -62,31 +30,15 @@
       "color": "white",
       "position": [
         7,
-        0
-      ]
-    },
-    {
-      "class": "Knight",
-      "color": "white",
-      "position": [
-        7,
-        1
-      ]
-    },
-    {
-      "class": "Bishop",
-      "color": "white",
-      "position": [
-        7,
-        2
+        3
       ]
     },
     {
       "class": "Queen",
       "color": "white",
       "position": [
-        7,
-        3
+        3,
+        1
       ]
     },
     {
@@ -106,49 +58,17 @@
       ]
     },
     {
-      "class": "Knight",
+      "class": "Pawn",
       "color": "white",
       "position": [
-        7,
-        6
-      ]
-    },
-    {
-      "class": "Rook",
-      "color": "white",
-      "position": [
-        7,
-        7
-      ]
-    },
-    {
-      "class": "Queen",
-      "color": "white",
-      "position": [
-        0,
-        3
+        6,
+        4
       ]
     }
   ],
   "black": [
     {
-      "class": "Pawn",
-      "color": "black",
-      "position": [
-        1,
-        0
-      ]
-    },
-    {
-      "class": "Pawn",
-      "color": "black",
-      "position": [
-        1,
-        1
-      ]
-    },
-    {
-      "class": "Pawn",
+      "class": "Queen",
       "color": "black",
       "position": [
         1,
@@ -159,40 +79,24 @@
       "class": "Pawn",
       "color": "black",
       "position": [
-        1,
+        3,
         5
       ]
     },
     {
-      "class": "Pawn",
-      "color": "black",
-      "position": [
-        1,
-        6
-      ]
-    },
-    {
-      "class": "Pawn",
-      "color": "black",
-      "position": [
-        1,
-        7
-      ]
-    },
-    {
-      "class": "Rook",
+      "class": "Bishop",
       "color": "black",
       "position": [
         0,
-        0
+        5
       ]
     },
     {
       "class": "Knight",
       "color": "black",
       "position": [
-        2,
-        2
+        0,
+        6
       ]
     },
     {
@@ -204,7 +108,15 @@
       ]
     },
     {
-      "class": "King",
+      "class": "Rook",
+      "color": "black",
+      "position": [
+        6,
+        7
+      ]
+    },
+    {
+      "class": "Pawn",
       "color": "black",
       "position": [
         1,
@@ -212,27 +124,51 @@
       ]
     },
     {
-      "class": "Bishop",
+      "class": "Rook",
       "color": "black",
       "position": [
-        0,
-        5
+        1,
+        0
       ]
     },
     {
-      "class": "Knight",
+      "class": "Pawn",
       "color": "black",
       "position": [
-        0,
+        1,
         6
       ]
     },
     {
-      "class": "Rook",
+      "class": "Pawn",
+      "color": "black",
+      "position": [
+        1,
+        3
+      ]
+    },
+    {
+      "class": "Pawn",
+      "color": "black",
+      "position": [
+        3,
+        0
+      ]
+    },
+    {
+      "class": "Pawn",
+      "color": "black",
+      "position": [
+        2,
+        1
+      ]
+    },
+    {
+      "class": "King",
       "color": "black",
       "position": [
         0,
-        7
+        4
       ]
     }
   ]
